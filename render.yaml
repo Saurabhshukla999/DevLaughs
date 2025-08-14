@@ -16,7 +16,7 @@ services:
     name: jokefy-frontend
     env: static
     plan: free
-    buildCommand: cd frontend && npm install --production=false && npm run build:prod
+    buildCommand: cd frontend && npm install --production=false && npm run build
     staticPublishPath: frontend/dist
     envVars:
       - key: NODE_ENV
