@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: jokefy-backend
+    env: node
+    plan: free
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URI
+        sync: false
+      - key: PORT
+        value: 10000
+    healthCheckPath: /health
+
+  - type: web
+    name: jokefy-frontend
+    env: static
+    plan: free
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/dist
+    envVars:
+      - key: NODE_ENV
+        value: production
+

@@ -9,13 +9,23 @@ dotenv.config(); // Load environment variables
 const app = express();
 
 // Middleware
-app.use(cors()); // Allow React to connect
+app.use(cors({
+  origin: process.env.NODE_ENV === 'production' 
+    ? ['https://jokefy-frontend.onrender.com'] // Your Render frontend URL
+    : ['http://localhost:5173', 'http://localhost:3000'],
+  credentials: true
+}));
 app.use(express.json()); // Parse JSON requests
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("✅ MongoDB Connected!"))
   .catch(err => console.log("❌ MongoDB Error:", err));
+
+// Health check endpoint
+app.get("/health", (req, res) => {
+  res.json({ status: "OK", timestamp: new Date().toISOString() });
+});
 
 const jokeSchema = new mongoose.Schema({
   joke: String,
