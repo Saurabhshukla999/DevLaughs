@@ -11,7 +11,7 @@ const app = express();
 // Middleware
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? ['https://jokefy-frontend.onrender.com'] // Your Render frontend URL
+    ? ['https://devlaughs-frontend.onrender.com'] // Your actual Render frontend URL
     : ['http://localhost:5173', 'http://localhost:3000'],
   credentials: true
 }));
@@ -85,4 +85,8 @@ app.get("/api", (req, res) => {
 
 // Start Server
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, '0.0.0.0', () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+  console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
+  console.log(`📡 MongoDB: ${process.env.MONGO_URI ? 'Connected' : 'Not configured'}`);
+});
