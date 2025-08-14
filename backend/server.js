@@ -12,7 +12,7 @@ const app = express();
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
     ? ['https://devlaughs.onrender.com'] // Your actual Render frontend URL
-    : ['http://localhost:5173', 'http://localhost:3000'],
+    : ['http://localhost:5173', 'http://localhost:3000'], // Local development ports
   credentials: true
 }));
 app.use(express.json()); // Parse JSON requests
