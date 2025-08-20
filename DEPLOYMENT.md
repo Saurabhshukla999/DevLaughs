@@ -1,4 +1,4 @@
-# 🚀 Deployment Guide for Jokefy
+# 🚀 Deployment Guide for ShareBoard
 
 ## Prerequisites
 
@@ -10,7 +10,7 @@
 
 1. Go to [MongoDB Atlas](https://mongodb.com/atlas)
 2. Create a free account and cluster
-3. Get your connection string (looks like: `mongodb+srv://username:password@cluster.mongodb.net/jokefy`)
+3. Get your connection string (looks like: `mongodb+srv://username:password@cluster.mongodb.net/shareboard`)
 4. Note this connection string for later
 
 ## Step 2: Deploy Backend to Render
@@ -19,7 +19,7 @@
 2. **Connect your GitHub repository**
 3. **Create a new Web Service**:
    - Choose your repository
-   - Name: `jokefy-backend`
+   - Name: `shareboard-backend`
    - Environment: `Node`
    - Build Command: `cd backend && npm install`
    - Start Command: `cd backend && npm start`
@@ -36,7 +36,7 @@
 
 1. **In the same Render dashboard, create another Web Service**:
    - Choose your repository again
-   - Name: `jokefy-frontend`
+   - Name: `shareboard-frontend`
    - Environment: `Static Site`
    - Build Command: `cd frontend && npm install --production=false && npm run build:prod`
    - Publish Directory: `frontend/dist`
@@ -56,7 +56,7 @@
      : ['http://localhost:5173', 'http://localhost:3000']
    ```
 
-2. **Update frontend config** in `frontend/src/config.js`:
+2. **Update frontend config** in `frontend/config.js`:
    ```javascript
    export const API_BASE_URL = process.env.NODE_ENV === 'production' 
      ? 'https://your-backend-domain.onrender.com' // Replace with your actual backend URL
@@ -121,7 +121,7 @@ cd frontend && npm install --production=false && npm run build:prod
 ### Backend (.env)
 ```bash
 NODE_ENV=production
-MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/jokefy
+MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/shareboard
 PORT=5000
 ```
 
@@ -139,7 +139,7 @@ NODE_ENV=production
 - [ ] Environment variables set correctly
 - [ ] Both services are running and healthy
 - [ ] Frontend can communicate with backend
-- [ ] Jokes can be posted and retrieved
+- [ ] Posts can be created and read
 
 ## Support
 

@@ -11,8 +11,8 @@ const app = express();
 // Middleware
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? ['https://devlaughs.onrender.com'] // Your actual Render frontend URL
-    : ['http://localhost:5173', 'http://localhost:3000'], // Local development ports
+    ? ['https://shareboard-frontend.onrender.com'] 
+    : ['http://localhost:5173', 'http://localhost:3000'], 
   credentials: true
 }));
 app.use(express.json()); // Parse JSON requests
@@ -32,50 +32,50 @@ app.get("/health", (req, res) => {
   });
 });
 
-const jokeSchema = new mongoose.Schema({
-  joke: String,
+const postSchema = new mongoose.Schema({
+  content: String,
   author: String,
   createdAt: { type: Date, default: Date.now }
 });
 
-const Joke = mongoose.model("Joke", jokeSchema);
+const Post = mongoose.model("Post", postSchema);
 
-// Get all jokes
+// Get all posts
 app.get("/", async (req, res) => {
   try {
-    const jokes = await Joke.find({}).sort({ createdAt: -1 });
-    res.json(jokes);
+    const posts = await Post.find({}).sort({ createdAt: -1 });
+    res.json(posts);
   } catch (error) {
-    res.status(500).json({ error: "Failed to fetch jokes" });
+    res.status(500).json({ error: "Failed to fetch posts" });
   }
 });
 
-// Post a new joke
-app.post("/jokes", async (req, res) => {
+// Create a new post
+app.post("/posts", async (req, res) => {
   try {
-    const { author, joke } = req.body;
+    const { author, content } = req.body;
     
-    if (!joke || !author) {
-      return res.status(400).json({ error: "Both joke and author are required" });
+    if (!content || !author) {
+      return res.status(400).json({ error: "Both content and author are required" });
     }
     
-    const newJoke = new Joke({ joke, author });
-    const savedJoke = await newJoke.save();
+    const newPost = new Post({ content, author });
+    const savedPost = await newPost.save();
     
-    res.status(201).json(savedJoke);
+    res.status(201).json(savedPost);
   } catch (error) {
-    res.status(500).json({ error: "Failed to create joke" });
+    res.status(500).json({ error: "Failed to create post" });
   }
 });
 
 // API info endpoint
 app.get("/api", (req, res) => {
   res.json({
-    message: "Jokefy API is running!",
+    message: "ShareBoard API is running!",
     version: "1.0.0",
     endpoints: {
-      "GET /": "Get all jokes",
-      "POST /jokes": "Create a new joke",
+      "GET /": "Get all posts",
+      "POST /posts": "Create a new post",
       "GET /health": "Health check",
       "GET /api": "API information"
     },

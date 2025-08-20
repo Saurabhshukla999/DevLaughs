@@ -32,7 +32,7 @@ Your frontend will run on `http://localhost:5173`
 Create `backend/.env`:
 ```bash
 NODE_ENV=development
-MONGO_URI=mongodb://localhost:27017/jokefy
+MONGO_URI=mongodb://localhost:27017/shareboard
 PORT=5000
 ```
 
@@ -81,19 +81,19 @@ export const API_BASE_URL = 'http://localhost:5000';
 ```bash
 # Install MongoDB locally
 # Then use in .env:
-MONGO_URI=mongodb://localhost:27017/jokefy
+MONGO_URI=mongodb://localhost:27017/shareboard
 ```
 
 ### Option 2: MongoDB Atlas (Same as Production)
 ```bash
 # Use the same connection string as production
-MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/jokefy
+MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/shareboard
 ```
 
 ### Option 3: Different Database for Testing
 ```bash
 # Use a separate database for local development
-MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/jokefy-dev
+MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/shareboard-dev
 ```
 
 ## 🚀 Development Workflow
@@ -156,7 +156,7 @@ mongosh
 - [ ] Backend running on `http://localhost:5000`
 - [ ] Frontend running on `http://localhost:5173`
 - [ ] MongoDB connection working
-- [ ] Can post and read jokes locally
+- [ ] Can create and read posts locally
 - [ ] Hot reload working for both frontend and backend
 - [ ] Environment variables properly set
 

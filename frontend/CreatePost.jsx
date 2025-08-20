@@ -2,8 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import { API_BASE_URL } from "./config";
 
-function PostJoke() {
-  const [newJoke, setNewJoke] = useState("");
+function CreatePost() {
+  const [content, setContent] = useState("");
   const [author, setAuthor] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -13,21 +13,21 @@ function PostJoke() {
     e.preventDefault();
     setError("");
     setSuccess("");
-    if (!newJoke.trim() || !author.trim()) {
+    if (!content.trim() || !author.trim()) {
       setError("Please fill in both fields");
       return;
     }
     try {
       setLoading(true);
-      await axios.post(`${API_BASE_URL}/jokes`, {
-        joke: newJoke,
+      await axios.post(`${API_BASE_URL}/posts`, {
+        content: content,
         author: author
       });
-      setNewJoke("");
+      setContent("");
       setAuthor("");
-      setSuccess("Joke posted successfully!");
-    } catch (err) {
-      setError("Failed to post joke ❌");
+      setSuccess("Post created successfully!");
+    } catch {
+      setError("Failed to create post ❌");
     } finally {
       setLoading(false);
     }
@@ -42,7 +42,7 @@ function PostJoke() {
       maxWidth: 500,
       margin: "40px auto"
     }}>
-      <h2 style={{ fontWeight: 700, fontSize: 28, marginBottom: 24, color: "#007bff" }}>Share a Joke</h2>
+      <h2 style={{ fontWeight: 700, fontSize: 28, marginBottom: 24, color: "#007bff" }}>Share Something</h2>
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: 18 }}>
           <label style={{ display: "block", marginBottom: 8, fontWeight: 500, color: "#222" }}>
@@ -66,12 +66,12 @@ function PostJoke() {
         </div>
         <div style={{ marginBottom: 18 }}>
           <label style={{ display: "block", marginBottom: 8, fontWeight: 500, color: "#222" }}>
-            Joke
+            Post
           </label>
           <textarea
-            value={newJoke}
-            onChange={(e) => setNewJoke(e.target.value)}
-            placeholder="Enter your joke here..."
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            placeholder="What would you like to share?"
             rows="4"
             style={{
               width: "100%",
@@ -101,7 +101,7 @@ function PostJoke() {
             transition: "background 0.2s"
           }}
         >
-          {loading ? "Posting..." : "Post Joke"}
+          {loading ? "Posting..." : "Create Post"}
         </button>
       </form>
       {error && <p style={{ color: "#e11d48", marginTop: 18 }}>{error}</p>}
@@ -110,4 +110,6 @@ function PostJoke() {
   );
 }
 
-export default PostJoke;
+export default CreatePost;
+
+

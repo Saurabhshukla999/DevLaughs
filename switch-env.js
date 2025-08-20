@@ -21,9 +21,9 @@ console.log('🌍 Switched to LOCAL backend: http://localhost:5000');`;
   } else {
     configContent = `// Configuration for API endpoints - PRODUCTION MODE
 export const API_BASE_URL = process.env.NODE_ENV === 'production' 
-  ? 'https://devlaughs-backend.onrender.com' // Your Render backend URL
+  ? 'https://shareboard-backend.onrender.com' // Your Render backend URL
   : 'http://localhost:5000';
-console.log('🌍 Switched to PRODUCTION backend: https://devlaughs-backend.onrender.com');`;
+console.log('🌍 Switched to PRODUCTION backend: https://shareboard-backend.onrender.com');`;
   }
 
   try {
@@ -46,7 +46,7 @@ console.log('🌍 Switched to PRODUCTION backend: https://devlaughs-backend.onre
 
 const environment = process.argv[2];
 if (!environment) {
-  console.log('🌍 Environment Switcher for Jokefy');
+  console.log('🌍 Environment Switcher for ShareBoard');
   console.log('=====================================');
   console.log('Usage: node switch-env.js <local|production>');
   console.log('');

@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: jokefy-backend
+    name: shareboard-backend
     env: node
     plan: free
     buildCommand: cd backend && npm install
@@ -13,7 +13,7 @@ services:
     healthCheckPath: /health
 
   - type: web
-    name: jokefy-frontend
+    name: shareboard-frontend
     env: static
     plan: free
     buildCommand: cd frontend && npm install --production=false && npm run build

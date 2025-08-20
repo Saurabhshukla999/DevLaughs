@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Link, Navigate } from "react-router-dom";
-import PostJoke from "./PostJoke";
-import ReadJokes from "./ReadJokes";
+import CreatePost from "./CreatePost";
+import ReadPosts from "./ReadPosts";
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
             alignItems: "center",
             justifyContent: "space-between"
           }}>
-            <span style={{ fontWeight: 700, fontSize: 28, color: "#007bff", letterSpacing: 1 }}>😄 Jokefy</span>
+            <span style={{ fontWeight: 700, fontSize: 28, color: "#007bff", letterSpacing: 1 }}>🗂️ ShareBoard</span>
             <div>
               <Link to="/" style={{
                 marginRight: 24,
@@ -31,7 +31,7 @@ function App() {
                 padding: "6px 12px",
                 borderRadius: 6,
                 transition: "background 0.2s",
-              }}>Read Jokes</Link>
+              }}>Read Posts</Link>
               <Link to="/post" style={{
                 textDecoration: "none",
                 color: "#fff",
@@ -41,14 +41,14 @@ function App() {
                 padding: "6px 18px",
                 borderRadius: 6,
                 transition: "background 0.2s",
-              }}>Post Joke</Link>
+              }}>Create Post</Link>
             </div>
           </div>
         </nav>
         <main style={{ maxWidth: 900, margin: "0 auto", padding: 24 }}>
           <Routes>
-            <Route path="/" element={<ReadJokes />} />
-            <Route path="/post" element={<PostJoke />} />
+            <Route path="/" element={<ReadPosts />} />
+            <Route path="/post" element={<CreatePost />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </main>
